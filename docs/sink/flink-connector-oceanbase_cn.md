@@ -167,6 +167,8 @@ VALUES (1, 'Tom', 99),
 | password                      | 是            | 是             |                          | String   | 连接密码。                                                                     |
 | schema-name                   | 是            | 不支持           |                          | String   | 连接的 schema 名或 db 名。                                                       |
 | table-name                    | 是            | 不支持           |                          | String   | 表名。                                                                       |
+| cluster-name                  | 否            | 否             |                          | String   | 集群名。如果用户没有指定，连接器将会尝试从用户名解析，或者通过查询数据库获取。                                   |
+| tenant-name                   | 否            | 否             |                          | String   | 租户名。如果用户没有指定，连接器将会尝试从用户名解析，或者通过查询数据库获取。                                   |
 | driver-class-name             | 否            | 否             | com.mysql.cj.jdbc.Driver | String   | 驱动类名，默认为 'com.mysql.cj.jdbc.Driver'，如果设置了其他值，需要手动引入对应的依赖。                 |
 | druid-properties              | 否            | 否             |                          | String   | Druid 连接池属性，多个值用分号分隔。                                                     |
 | sync-write                    | 否            | 否             | false                    | Boolean  | 是否开启同步写，设置为 true 时将不使用 buffer 直接写入数据库。                                    |
