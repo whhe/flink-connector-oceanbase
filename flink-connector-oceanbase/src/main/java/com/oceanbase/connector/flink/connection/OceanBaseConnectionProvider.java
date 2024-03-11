@@ -124,17 +124,17 @@ public class OceanBaseConnectionProvider implements ConnectionProvider {
         if (userInfo == null) {
             OceanBaseUserInfo user = OceanBaseUserInfo.parse(options.getUsername());
             if (user.getCluster() == null) {
-                String cluster = OceanBaseJdbcUtils.getClusterName(this::getConnection);
-                if (StringUtils.isBlank(cluster)) {
-                    throw new RuntimeException("Query found empty cluster name");
-                }
+                String cluster =
+                        options.getClusterName() != null
+                                ? options.getClusterName()
+                                : OceanBaseJdbcUtils.getClusterName(this::getConnection);
                 user.setCluster(cluster);
             }
             if (user.getTenant() == null) {
-                String tenant = OceanBaseJdbcUtils.getTenantName(this::getConnection, dialect);
-                if (StringUtils.isBlank(tenant)) {
-                    throw new RuntimeException("Query found empty tenant name");
-                }
+                String tenant =
+                        options.getTenantName() != null
+                                ? options.getTenantName()
+                                : OceanBaseJdbcUtils.getTenantName(this::getConnection, dialect);
                 user.setTenant(tenant);
             }
             userInfo = user;

@@ -30,6 +30,18 @@ import java.util.Properties;
 public class OceanBaseConnectorOptions extends ConnectorOptions {
     private static final long serialVersionUID = 1L;
 
+    public static final ConfigOption<String> CLUSTER_NAME =
+            ConfigOptions.key("cluster-name")
+                    .stringType()
+                    .noDefaultValue()
+                    .withDescription("The cluster name.");
+
+    public static final ConfigOption<String> TENANT_NAME =
+            ConfigOptions.key("tenant-name")
+                    .stringType()
+                    .noDefaultValue()
+                    .withDescription("The tenant name.");
+
     public static final ConfigOption<String> DRIVER_CLASS_NAME =
             ConfigOptions.key("driver-class-name")
                     .stringType()
@@ -120,6 +132,14 @@ public class OceanBaseConnectorOptions extends ConnectorOptions {
 
     public OceanBaseConnectorOptions(Map<String, String> config) {
         super(config);
+    }
+
+    public String getClusterName() {
+        return allConfig.get(CLUSTER_NAME);
+    }
+
+    public String getTenantName() {
+        return allConfig.get(TENANT_NAME);
     }
 
     public String getDriverClassName() {
